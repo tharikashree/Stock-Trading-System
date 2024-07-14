@@ -6,7 +6,7 @@
 // import { Container, Typography, Box, TextField, Button } from '@mui/material';
 // import SideNav from './SideNav';
 
-// const apiKey = 'K4Uba8cDnh9mY_f9I2yCUR13ZpN28HSp';
+// const apiKey = 'YOUR_POLYGON_API_KEY';
 // const apiUrlBase = 'https://api.polygon.io/v2/aggs/ticker';
 
 // const StockChart = () => {
