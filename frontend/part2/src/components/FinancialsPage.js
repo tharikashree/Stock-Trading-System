@@ -6,7 +6,7 @@ import SideNav from './SideNav';
 const FinancialsPage = () => {
     const [companySymbol, setCompanySymbol] = useState('');
     const [companyInfo, setCompanyInfo] = useState(null);
-    const apiKey = '39cWPGctMStrdtKoYHXvvcLIFPd5k1SM'; // Replace with your actual API key from Financial Modeling Prep
+    const apiKey = 'YOUR_FINANCIAL_TADING_PREP_KEY'; // Replace with your actual API key from Financial Modeling Prep
 
     const handleSymbolChange = (event) => {
         setCompanySymbol(event.target.value);
