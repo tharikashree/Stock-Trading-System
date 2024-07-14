@@ -21,7 +21,7 @@
 //                           // Change this if you want news from a different country
 //                         from: thirtyDaysAgoISO,
 //                         to: todayISO,
-//                         apiKey: '5511cdf9901f4b98b47ecbf344427393',  // Replace with your NewsAPI API key
+//                         apiKey: 'YOUR_NEWS_API_KEY',  // Replace with your NewsAPI API key
 //                     },
 //                 });
 //                 setArticles(response.data.articles);
