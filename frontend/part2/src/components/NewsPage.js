@@ -1,4 +1,77 @@
 
+// import React, { useEffect, useState } from 'react';
+// import { Container, Typography, Box, List, ListItem, ListItemText, Link } from '@mui/material';
+// import axios from 'axios';
+// import SideNav from './SideNav';
+
+// const NewsPage = () => {
+//     const [articles, setArticles] = useState([]);
+//     const getISODate = (offsetDays = 0) => {
+//         const date = new Date();
+//         date.setDate(date.getDate() + offsetDays);
+//         return date.toISOString().split('T')[0];
+//     };
+//     const todayISO = getISODate();
+//     const thirtyDaysAgoISO = getISODate(-30);
+
+//     useEffect(() => {
+//         const fetchNews = async () => {
+//             try {
+//                 const response = await axios.get('https://newsapi.org/v2/top-headlines?q=stocks', {
+//                     params: {
+//                           // Change this if you want news from a different country
+//                         from: thirtyDaysAgoISO,
+//                         to: todayISO,
+//                         apiKey: 'YOUR_NEWS_API_KEY',  // Replace with your NewsAPI API key
+//                     },
+//                 });
+//                 setArticles(response.data.articles);
+//             } catch (error) {
+//                 console.error('Error fetching news:', error);
+//             }
+//         };
+
+//         fetchNews();
+//     }, []);
+
+//     return (
+//         <Box sx={{ display: 'flex' }}>
+//             <SideNav />
+//             <Container>
+//                 <Typography variant="h4" sx={{ marginTop: 3 }}>
+//                     Latest News
+//                 </Typography>
+//                 <List>
+//                     {articles.map((article, index) => (
+//                         <ListItem key={index}>
+//                             <ListItemText
+//                                 primary={article.title}
+//                                 secondary={
+//                                     <React.Fragment>
+//                                         <Typography
+//                                             component="span"
+//                                             variant="body2"
+//                                             color="text.primary"
+//                                         >
+//                                             {article.source.name}
+//                                         </Typography>
+//                                         {' — '}
+//                                         {new Date(article.publishedAt).toLocaleString()}
+//                                     </React.Fragment>
+//                                 }
+//                             />
+//                             <Link href={article.url} target="_blank" rel="noopener">
+//                                 Read More
+//                             </Link>
+//                         </ListItem>
+//                     ))}
+//                 </List>
+//             </Container>
+//         </Box>
+//     );
+// };
+
+// export default NewsPage;
 import React, { useEffect, useState } from 'react';
 import { Container, Typography, Box, List, ListItem, ListItemText, Link, CssBaseline } from '@mui/material';
 import axios from 'axios';

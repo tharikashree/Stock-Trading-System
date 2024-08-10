@@ -8,7 +8,7 @@ import SideNav from './SideNav';
 const PortfolioPage = () => {
     const [stocks, setStocks] = useState([]);
     const [funds, setFunds] = useState([]);
-    const [isLoading, setIsLoading] = useState(true); 
+    const [isLoading, setIsLoading] = useState(true); // Loading state
 
     const isoToReadableDate = (isoDateString) => {
         const date = new Date(isoDateString);
@@ -31,7 +31,7 @@ const PortfolioPage = () => {
                     headers: { 'Authorization': `Bearer ${access_token}` }
                 });
                 setFunds(fundResponse.data);
-                setIsLoading(false); 
+                setIsLoading(false); // Set loading state to false
             } catch (error) {
                 console.error('Error fetching data:', error);
                 setIsLoading(false); 
