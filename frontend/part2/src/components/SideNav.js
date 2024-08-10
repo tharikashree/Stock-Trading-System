@@ -8,6 +8,7 @@ import FeedIcon from '@mui/icons-material/Feed';
 import { Link } from 'react-router-dom';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const SideNav = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -74,6 +75,10 @@ const SideNav = () => {
                     <ListItem button component={Link} to="/financials" onClick={toggleDrawer(false)}>
                         <ListItemIcon><MonetizationOnIcon /></ListItemIcon>
                         <ListItemText primary="Financials" />
+                    </ListItem>
+                    <ListItem button component={Link} to="/logout">
+                        <ListItemIcon><LogoutIcon /></ListItemIcon>
+                        <ListItemText primary="Logout" />
                     </ListItem>
                 </List>
             </Drawer>

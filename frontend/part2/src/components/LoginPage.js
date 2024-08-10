@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
-import { Container, TextField,Box,Paper, Button, Typography } from '@mui/material';
+import { Container, TextField, Box, Paper, Button, Typography, Snackbar, Alert } from '@mui/material';
 import axios from 'axios'; 
+import SideNav from './SideNav'; 
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
     const [username, setUser] = useState('');
     const [password, setPassword] = useState('');
+    const [open, setOpen] = useState(false);
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
 
     const handleLogin = () => {
         axios.post('http://localhost:8000/api/auth/login', {
@@ -12,19 +17,27 @@ const LoginPage = () => {
             password: password
         })
             .then(response => {
-                // Save the JWT token to local storage or state management solution
+                
                 localStorage.setItem('access_token', response.data.bearer);
-                // localStorage.setItem('refresh_token', response.data.refresh);
+          
                 console.log('Logged in successfully:', response.data);
-                // Redirect to another page or perform additional actions
+                setOpen(true);
+                setTimeout(() => {
+                    navigate('/');
+                }, 1000); 
             })
             .catch(error => {
-                console.error('There was an error logging in!', error);
-                //setError('Invalid username or password');
+                setError('Login failed. Please check your credentials and try again.');
+                setOpen(true);
             });
     };
-
+    const handleClose = () => {
+        setOpen(false);
+        setError('');
+    };
     return (
+    <>
+        <SideNav />
         <Box
             sx={{
                 display: 'flex',
@@ -81,8 +94,14 @@ const LoginPage = () => {
                         Login
                     </Button>
                 </Paper>
+                    <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+                        <Alert onClose={handleClose} severity={error ? "error" : "success"} sx={{ width: '100%' }}>
+                            {error ? error : "Login successful!"}
+                        </Alert>
+                    </Snackbar>
             </Container>
         </Box>
+    </>
     );
 };
 

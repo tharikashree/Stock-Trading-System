@@ -5,6 +5,8 @@ import './LandingPage.css';
 import img2 from '../assets/img2.jpeg';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+
 
 const LandingPage = () => {
     return (
@@ -22,6 +24,10 @@ const LandingPage = () => {
                         <AccountCircleIcon sx={{ mr: 1 }} />
                         Sign Up
                     </Link>
+                    <Link href="http://127.0.0.1:8000/admin/login/" color="inherit" sx={{ textDecoration: 'none' }}>
+                        <AdminPanelSettingsIcon sx={{ mr: 1 ,ml:1}} />
+                        Admin
+                    </Link>
                 </Box>
             </Box>
             <Container>
@@ -33,13 +39,13 @@ const LandingPage = () => {
                         <CardMedia
                             component="img"
                             height="auto"
-                            image={img2}  // Use the imported image variable
+                            image={img2} 
                             alt="Stock Trading Image"
                             sx={{
-                                maxWidth: '100%',     // Ensure the image doesn't exceed the card width
-                                maxHeight: '300px',   // Limit the height to avoid excessive space
-                                objectFit: 'cover',   // Maintain aspect ratio and cover the area
-                                borderRadius: '16px'  // Optional: Adds rounded corners to the image
+                                maxWidth: '100%',     
+                                maxHeight: '300px',   
+                                objectFit: 'cover',   
+                                borderRadius: '16px'  
                             }}
                         />
                         <CardContent>

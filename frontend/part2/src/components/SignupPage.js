@@ -1,58 +1,18 @@
-// import React, { useState } from 'react';
-// import { Container, TextField, Button, Typography } from '@mui/material';
-// import axios from 'axios';
 
-// const SignupPage = () => {
-//     const [email, setEmail] = useState('');
-//     const [password, setPassword] = useState('');
-
-//     const handleSignup = () => {
-//         axios.post('http://localhost:8000/api/auth/register', { username: email, password })
-//             .then(response => {
-//                 console.log('Signup successful!', response.data);
-                
-//                 // Handle success, e.g., redirect to login page
-//             })
-//             .catch(error => {
-//                 console.error('Error signing up!', error);
-//                 // Handle error, e.g., display error message to user
-//             });
-//     };
-
-//     return (
-//         <Container>
-//             <Typography variant="h4">Sign Up</Typography>
-//             <TextField
-//                 label="Email"
-//                 value={email}
-//                 onChange={(e) => setEmail(e.target.value)}
-//                 fullWidth
-//                 margin="normal"
-//             />
-//             <TextField
-//                 label="Password"
-//                 type="password"
-//                 value={password}
-//                 onChange={(e) => setPassword(e.target.value)}
-//                 fullWidth
-//                 margin="normal"
-//             />
-//             <Button variant="contained" color="primary" onClick={handleSignup}>
-//                 Sign Up
-//             </Button>
-//         </Container>
-//     );
-// };
-
-// export default SignupPage;
 import React, { useState } from 'react';
-import { Container, TextField, Button,Box,Paper,Typography, CssBaseline } from '@mui/material';
+import { Container, TextField, Button,Box,Paper,Typography, CssBaseline,Snackbar,Alert} from '@mui/material';
 import axios from 'axios';
+import SideNav from './SideNav';
+import { useNavigate } from 'react-router-dom';
 
 const SignupPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [username, setUsern] = useState('');
+    const [open, setOpen] = useState(false);
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
+
     const handleSignup = () => {
         axios.post('http://localhost:8000/api/auth/register',{
             username: username,
@@ -60,17 +20,23 @@ const SignupPage = () => {
             password:password
         })
             .then(response => {
-                console.log('Signup successful!', response.data);
-
-                // Handle success, e.g., redirect to login page
+                setTimeout(() => {
+                    navigate('/login'); // Redirect to login page after 2 seconds
+                }, 2000);
             })
             .catch(error => {
-                console.error('Error signing up!', error);
-                // Handle error, e.g., display error message to user
+                setError('Signup failed. Please check your details and try again.');
+                setOpen(true);
             });
+    };
+    const handleClose = () => {
+        setOpen(false);
+        setError('');
     };
 
     return (
+    <>  
+        <SideNav />
         <Box
             sx={{
                 backgroundColor: '#f3e5f5',
@@ -140,8 +106,14 @@ const SignupPage = () => {
                         Sign Up
                     </Button>
                 </Paper>
+                <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+                    <Alert onClose={handleClose} severity={error ? "error" : "success"} sx={{ width: '100%' }}>
+                        {error ? error : "Signup successful! Redirecting to login..."}
+                    </Alert>
+                </Snackbar>
             </Container>
         </Box>
+    </>
     );
 };
 

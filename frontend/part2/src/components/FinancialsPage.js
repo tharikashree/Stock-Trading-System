@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Container, Typography, Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Grid, Card, CardContent, CardMedia, TextField, Button } from '@mui/material';
+import { Container, Typography, Box, Table, TableBody, TableCell, TableContainer, TableRow, Paper, Grid, Card, CardContent, CardMedia, TextField, Button } from '@mui/material';
 import axios from 'axios';
 import SideNav from './SideNav';
 
 const FinancialsPage = () => {
     const [companySymbol, setCompanySymbol] = useState('');
     const [companyInfo, setCompanyInfo] = useState(null);
-    const apiKey = '39cWPGctMStrdtKoYHXvvcLIFPd5k1SM'; // Replace with your actual API key from Financial Modeling Prep
+    const apiKey = '39cWPGctMStrdtKoYHXvvcLIFPd5k1SM'; 
 
     const handleSymbolChange = (event) => {
         setCompanySymbol(event.target.value);
@@ -15,7 +15,7 @@ const FinancialsPage = () => {
     const fetchCompanyInfo = async () => {
         try {
             const response = await axios.get(`https://financialmodelingprep.com/api/v3/profile/${companySymbol}?apikey=${apiKey}`);
-            setCompanyInfo(response.data[0]); // Assuming response is an array with one object
+            setCompanyInfo(response.data[0]); 
         } catch (error) {
             console.error('Error fetching company info:', error);
         }
@@ -28,17 +28,19 @@ const FinancialsPage = () => {
 
     if (!companyInfo) {
         return (
+        <>
+            <SideNav />
             <Box
                 sx={{
                     display: 'flex',
                     minHeight: '100vh',
-                    backgroundImage: 'url(https://source.unsplash.com/random)', // Replace with your image URL
+                    backgroundImage: 'url(https://source.unsplash.com/random)', 
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     backgroundColor: '#6a1b9a'
                 }}
             >
-                <SideNav />
+                
                 <Container sx={{ flexGrow: 1, padding: 3, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <Paper
                         elevation={6}
@@ -79,6 +81,7 @@ const FinancialsPage = () => {
                     </Paper>
                 </Container>
             </Box>
+        </>
         );
     }
 
