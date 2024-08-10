@@ -6,7 +6,7 @@ import SideNav from './SideNav';
 const FinancialsPage = () => {
     const [companySymbol, setCompanySymbol] = useState('');
     const [companyInfo, setCompanyInfo] = useState(null);
-    const apiKey = '39cWPGctMStrdtKoYHXvvcLIFPd5k1SM'; 
+    const apiKey = '***********************'; 
      
 
     const handleSymbolChange = (event) => {
