@@ -13,6 +13,8 @@ const StockChart = () => {
     const [tickerSymbol, setTickerSymbol] = useState('');
     const [data, setData] = useState([]);
     const [fetched, setFetched] = useState(false);
+    const [yesterdayOpen, setYesterdayOpen] = useState(null);
+    const [yesterdayClose, setYesterdayClose] = useState(null);
 
     const handleInputChange = (event) => {
         setTickerSymbol(event.target.value.toUpperCase());
@@ -30,6 +32,10 @@ const StockChart = () => {
             }));
             setData(results);
             setFetched(true);
+            const yesterdayData = response.data.results[response.data.results.length - 1];
+            setYesterdayOpen(yesterdayData.o);
+            setYesterdayClose(yesterdayData.c);
+            
         } catch (error) {
             console.error('Error fetching data:', error);
         }
@@ -75,6 +81,7 @@ const StockChart = () => {
                         </Button>
                     </form>
                     {fetched && (
+                    <>
                         <ResponsiveContainer width="100%" height={400}>
                             <LineChart
                                 data={data}
@@ -90,6 +97,13 @@ const StockChart = () => {
                                 <Line type="monotone" dataKey="price" stroke="#6a1b9a" strokeWidth={2} dot={false} />
                             </LineChart>
                         </ResponsiveContainer>
+                        <Typography variant="h6" sx={{ marginTop: 3, color: '#6a1b9a', textAlign: 'center' }}>
+                            Opening Price: ₹{yesterdayOpen}
+                        </Typography>
+                        <Typography variant="h6" sx={{ marginTop: 1, color: '#6a1b9a', textAlign: 'center' }}>
+                            Closing Price: ₹{yesterdayClose}
+                        </Typography>
+                    </>
                     )}
                 </Paper>
             </Container>
