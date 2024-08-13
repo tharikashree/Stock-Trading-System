@@ -24,7 +24,7 @@ const StockChart = () => {
         event.preventDefault();
         try {
             const response = await axios.get(
-                `${apiUrlBase}/${tickerSymbol}/range/1/day/2023-01-01/2023-12-31?apiKey=${apiKey}`
+                `${apiUrlBase}/${tickerSymbol}/range/1/day/2024-01-01/2024-08-13?apiKey=${apiKey}`
             );
             const results = response.data.results.map(result => ({
                 time: new Date(result.t).toLocaleDateString(),
